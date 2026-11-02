@@ -1,0 +1,3 @@
+import {describe,it,expect} from 'vitest';import {isAdult,priceFor} from '@/lib/tobezly';
+describe('Adult dating',()=>{it('rejects a person younger than 18',()=>expect(isAdult('2008-11-03',new Date('2026-11-02T12:00:00Z'))).toBe(false));it('allows a person on their 18th birthday',()=>expect(isAdult('2008-11-02',new Date('2026-11-02T12:00:00Z'))).toBe(true));});
+describe('Independent rental pricing',()=>{it('uses owner hourly rate for chosen hours',()=>expect(priceFor('hour',3,25000,150000)).toBe(75000));it('uses the owner daily rate for daily bookings',()=>expect(priceFor('day',24,25000,150000)).toBe(150000));});
