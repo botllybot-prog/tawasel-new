@@ -15,7 +15,7 @@ const spacesQuery = queryOptions({
   queryKey: ['spaces'],
   queryFn: () => listSpaces()
 });
-export const Route = createFileRoute('/spaces/$id')({
+export const Route = createFileRoute('/spaces_/$id')({
   loader: ({
     context
   }) => context.queryClient.ensureQueryData(spacesQuery),
