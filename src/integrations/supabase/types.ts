@@ -349,6 +349,7 @@ export type Database = {
         Row: {
           capacity: number
           city: string
+          country_code: string | null
           created_at: string
           daily_price: number
           description: string
@@ -363,6 +364,7 @@ export type Database = {
         Insert: {
           capacity?: number
           city: string
+          country_code?: string | null
           created_at?: string
           daily_price: number
           description: string
@@ -377,6 +379,7 @@ export type Database = {
         Update: {
           capacity?: number
           city?: string
+          country_code?: string | null
           created_at?: string
           daily_price?: number
           description?: string
