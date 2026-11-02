@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { useSession } from './session';
 import {Notifications} from './notifications';
+import {MessageNotifications} from './message-notifications';
 export function Header() {
   const {
     t, language, setLanguage
@@ -19,7 +20,7 @@ export function Header() {
     select: s => s.location.pathname
   });
   const [open, setOpen] = useState(false);
-  return <header className="site-header"><div className="header-inner"><Link to="/" className="wordmark"><span className="logo-mark"><Heart size={23} strokeWidth={2.3} /></span><span>{t("\u062A\u0648\u0627\u0635\u0644")}<small>TAWASEL</small></span></Link><nav className={open ? 'main-nav is-open' : 'main-nav'} aria-label={t("\u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0631\u0626\u064A\u0633\u064A\u0629")}><Link to="/" activeOptions={{
+  return <header className="site-header"><div className="header-inner"><Link to="/" className="wordmark"><span className="logo-mark"><Heart size={23} strokeWidth={2.3} /></span><span>{t("\u062A\u0648\u0627\u0635\u0644")}<small>TAWASEL</small></span></Link><MessageNotifications/><nav className={open ? 'main-nav is-open' : 'main-nav'} aria-label={t("\u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0631\u0626\u064A\u0633\u064A\u0629")}><Link to="/" activeOptions={{
           exact: true
         }} className={path === '/' || path === '/dating' ? 'nav-item active' : 'nav-item'}><Heart size={17} />{t("\u0627\u0644\u062A\u0639\u0627\u0631\u0641")}</Link><Link to="/spaces" className={path.startsWith('/spaces') ? 'nav-item active' : 'nav-item'}><Building2 size={17} />{t("\u0627\u0644\u0645\u0633\u0627\u062D\u0627\u062A")}</Link><Link to="/host" className="nav-item">{t("\u0623\u0636\u0641 \u0645\u0633\u0627\u062D\u062A\u0643")}<ArrowUpLeft size={15} /></Link></nav><div className="header-actions"><Notifications/><select className="language-select" aria-label="اللغة / Language" value={language} onChange={e=>setLanguage(e.target.value as 'ar'|'en'|'ku')}><option value="ar">العربية</option><option value="en">English</option><option value="ku">کوردی</option></select>{user ? <><Button asChild variant="ghost"><Link to="/account"><UserRound />{t("\u062D\u0633\u0627\u0628\u064A")}</Link></Button><Button variant="ghost" size="icon" aria-label={t("\u062A\u0633\u062C\u064A\u0644 \u0627\u0644\u062E\u0631\u0648\u062C")} title={t("\u062A\u0633\u062C\u064A\u0644 \u0627\u0644\u062E\u0631\u0648\u062C")} onClick={async () => {
             await qc.cancelQueries();
