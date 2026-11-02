@@ -1,0 +1,2 @@
+import {describe,it,expect} from 'vitest';import {bookingNotification} from '@/lib/booking-notifications';
+describe('Booking notification events',()=>{it('handles request submission',()=>expect(bookingNotification('requested')).not.toBe(bookingNotification('unknown')));it('handles confirmed bookings separately',()=>expect(bookingNotification('accepted')).not.toBe(bookingNotification('requested')));it('handles cancellation separately from confirmation',()=>expect(bookingNotification('cancelled')).not.toBe(bookingNotification('accepted')));});

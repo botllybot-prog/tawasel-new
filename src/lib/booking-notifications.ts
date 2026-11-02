@@ -1,0 +1,1 @@
+export function bookingNotification(event:string){const messages:Record<string,string>={requested:'تم إرسال طلب الحجز؛ بانتظار موافقة صاحب المكان.',received:'وصلك طلب حجز جديد لمساحتك.',accepted:'تم تأكيد الحجز من صاحب المكان.',rejected:'تم رفض طلب الحجز من صاحب المكان.',cancelled:'تم إلغاء الحجز وتحديث حالته.'};return messages[event]??'تم تحديث حالة الحجز.';}
