@@ -1,6 +1,7 @@
 # Tobezly
-- [ ] Fix the photo URL environment access error, confirm build and security checks before publishing.
-- [ ] Restrict direct rental-photo access to owners, verify public listing photos safely, recheck security and publish.
+- [x] Fix the photo URL environment access error and confirm successful build and security checks.
+- [x] Restrict direct rental-photo access to owners and verify public listing photos safely with anonymous, owner and other-user checks.
+- [ ] Request publication after passing checks.
 - [x] Build independent dating and rental pages in Arabic.
 - [x] Add verified email accounts and adult profiles, privacy, block/report and pending photo review.
 - [x] Add space owner management, availability and booking requests.
