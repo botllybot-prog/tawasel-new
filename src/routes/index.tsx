@@ -7,7 +7,7 @@ import {Couples} from '@/components/tobezly/couples';
 import studio from '@/assets/meeting-studio.jpg';
 import { metadata } from '@/lib/tobezly';
 export const Route = createFileRoute('/')({
-  head: () => metadata('التعارف بطريقتك', 'طوبزلي للتعارف بين البالغين باهتمامات مشتركة وخصوصية، ومنصة مستقلة لتأجير المساحات.'),
+  head: () => metadata('التعارف بطريقتك', 'تواصل للتعارف بين البالغين باهتمامات مشتركة وخصوصية، ومنصة مستقلة لتأجير المساحات.'),
   component: Home
 });
 function Home() {

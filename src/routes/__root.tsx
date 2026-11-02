@@ -82,9 +82,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "طوبزلي Tobezly" },
-      { name: "description", content: "طوبزلي للتعارف والمساحات، منصتان مستقلتان في مكان واحد." },
-      { property: "og:title", content: "طوبزلي Tobezly" },
+      { title: "تواصل Tawasel" },
+      { name: "description", content: "تواصل للتعارف والمساحات، منصتان مستقلتان في مكان واحد." },
+      { property: "og:title", content: "تواصل Tawasel" },
       { property: "og:description", content: "تواصل حقيقي ومساحات مستقلة." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
