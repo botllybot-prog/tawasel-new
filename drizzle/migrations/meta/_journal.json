@@ -22,6 +22,13 @@
       "when": 1793598465598,
       "tag": "0002_booking_notifications",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1793601458016,
+      "tag": "0003_migration",
+      "breakpoints": true
     }
   ]
 }
