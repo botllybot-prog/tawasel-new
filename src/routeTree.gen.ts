@@ -20,7 +20,7 @@ import { Route as HostRouteImport } from './routes/host'
 import { Route as ModerationRouteImport } from './routes/moderation'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SpacesRouteImport } from './routes/spaces'
-import { Route as SpacesIdRouteImport } from './routes/spaces.$id'
+import { Route as SpacesIdRouteImport } from './routes/spaces_.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -78,9 +78,9 @@ const SpacesRoute = SpacesRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const SpacesIdRoute = SpacesIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => SpacesRoute,
+  id: '/spaces_/$id',
+  path: '/spaces/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -94,7 +94,7 @@ export interface FileRoutesByFullPath {
   '/host': typeof HostRoute
   '/moderation': typeof ModerationRoute
   '/reset-password': typeof ResetPasswordRoute
-  '/spaces': typeof SpacesRouteWithChildren
+  '/spaces': typeof SpacesRoute
   '/spaces/$id': typeof SpacesIdRoute
 }
 export interface FileRoutesByTo {
@@ -108,7 +108,7 @@ export interface FileRoutesByTo {
   '/host': typeof HostRoute
   '/moderation': typeof ModerationRoute
   '/reset-password': typeof ResetPasswordRoute
-  '/spaces': typeof SpacesRouteWithChildren
+  '/spaces': typeof SpacesRoute
   '/spaces/$id': typeof SpacesIdRoute
 }
 export interface FileRoutesById {
@@ -123,8 +123,8 @@ export interface FileRoutesById {
   '/host': typeof HostRoute
   '/moderation': typeof ModerationRoute
   '/reset-password': typeof ResetPasswordRoute
-  '/spaces': typeof SpacesRouteWithChildren
-  '/spaces/$id': typeof SpacesIdRoute
+  '/spaces': typeof SpacesRoute
+  '/spaces_/$id': typeof SpacesIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -168,7 +168,7 @@ export interface FileRouteTypes {
     | '/moderation'
     | '/reset-password'
     | '/spaces'
-    | '/spaces/$id'
+    | '/spaces_/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -182,7 +182,8 @@ export interface RootRouteChildren {
   HostRoute: typeof HostRoute
   ModerationRoute: typeof ModerationRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
-  SpacesRoute: typeof SpacesRouteWithChildren
+  SpacesRoute: typeof SpacesRoute
+  SpacesIdRoute: typeof SpacesIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -264,26 +265,15 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpacesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/spaces/$id': {
-      id: '/spaces/$id'
-      path: '/$id'
+    '/spaces_/$id': {
+      id: '/spaces_/$id'
+      path: '/spaces/$id'
       fullPath: '/spaces/$id'
       preLoaderRoute: typeof SpacesIdRouteImport
-      parentRoute: typeof SpacesRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
-
-interface SpacesRouteChildren {
-  SpacesIdRoute: typeof SpacesIdRoute
-}
-
-const SpacesRouteChildren: SpacesRouteChildren = {
-  SpacesIdRoute: SpacesIdRoute,
-}
-
-const SpacesRouteWithChildren =
-  SpacesRoute._addFileChildren(SpacesRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -296,7 +286,8 @@ const rootRouteChildren: RootRouteChildren = {
   HostRoute: HostRoute,
   ModerationRoute: ModerationRoute,
   ResetPasswordRoute: ResetPasswordRoute,
-  SpacesRoute: SpacesRouteWithChildren,
+  SpacesRoute: SpacesRoute,
+  SpacesIdRoute: SpacesIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
