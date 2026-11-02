@@ -238,3 +238,12 @@ html[dir=ltr] .hero-image { transform:scaleX(-1); }html[dir=ltr] .hero-shade { t
 .notification-bell { position:relative; }.notification-dot { position:absolute; top:0; inset-inline-end:0; min-width:16px; height:16px; border-radius:50%; background:var(--earth-accent); color:var(--primary-foreground); display:grid; place-items:center; font-size:9px; }
 .notification-list { max-height:50vh; overflow:auto; }.notification-item { display:flex; gap:12px; padding:15px; border-bottom:1px solid var(--border); font-size:12px; }.notification-item>svg { flex-shrink:0; color:var(--primary); margin-top:4px; }.notification-item small { color:var(--muted-foreground); font-size:10px; display:block; margin-top:6px; }.notification-item.unread { background:var(--secondary); }.notification-item a { font-size:11px; padding:0; height:25px; margin-top:5px; }
 @media(max-width:700px) { .header-actions { gap:0; }.header-actions>a { font-size:10px; }.header-actions:has(.notification-bell) .language-select { width:55px; }.header-actions:has(.notification-bell)>a { padding-inline:5px; }.header-actions:has(.notification-bell) button { width:30px; }.wordmark { font-size:21px; } }
+
+.message-notification-trigger { flex-shrink:0; }
+.message-notification-list { max-height:50vh; overflow:auto; }
+.message-notification-item { display:flex; align-items:flex-start; gap:12px; padding:14px; border-bottom:1px solid var(--border); color:var(--foreground); text-decoration:none; font-size:12px; }
+.message-notification-item:hover,.message-notification-item.unread { background:var(--secondary); }
+.message-notification-item>svg { flex-shrink:0; color:var(--primary); margin-top:3px; }
+.message-notification-item strong { display:block; font-size:13px; }
+.message-notification-item small { display:block; margin-top:4px; color:var(--muted-foreground); font-size:10px; }
+.message-notification-item p { margin-top:7px; overflow-wrap:anywhere; color:var(--muted-foreground); }
