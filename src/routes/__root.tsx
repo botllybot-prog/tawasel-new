@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SessionProvider } from '@/components/tobezly/session';
 import { Header, Footer } from '@/components/tobezly/shell';
 import { Toaster } from 'sonner';
+import {LanguageProvider} from '@/components/tobezly/language';
 
 function NotFoundComponent() {
   return (
@@ -122,12 +123,12 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SessionProvider>
+      <LanguageProvider><SessionProvider>
         <Header />
         <Outlet />
         <Footer />
         <Toaster position="bottom-center" richColors dir="rtl" />
-      </SessionProvider>
+      </SessionProvider></LanguageProvider>
     </QueryClientProvider>
   );
 }
