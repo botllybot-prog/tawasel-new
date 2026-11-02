@@ -1,5 +1,5 @@
 # Tawasel
-- [ ] Add linked country/city dropdowns and apartment, cafeteria and bar types; verify saving and editing.
+- [x] Add linked country/city dropdowns and apartment, cafeteria and bar types; verify saving and editing.
 - [x] Fix the photo URL environment access error and confirm successful build and security checks.
 - [x] Restrict direct rental-photo access to owners and verify public listing photos safely with anonymous, owner and other-user checks.
 - [x] Request publication after passing build, basic security and end-to-end photo access checks.
