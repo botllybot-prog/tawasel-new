@@ -6,7 +6,7 @@ import { Field } from '@/components/tobezly/fields';
 import { supabase } from '@/integrations/supabase/client';
 import { metadata } from '@/lib/tobezly';
 export const Route = createFileRoute('/reset-password')({
-  head: () => metadata('كلمة مرور جديدة', 'تعيين كلمة مرور جديدة عبر رابط استعادة طوبزلي الآمن.'),
+  head: () => metadata('كلمة مرور جديدة', 'تعيين كلمة مرور جديدة عبر رابط استعادة تواصل الآمن.'),
   component: Reset
 });
 function Reset() {

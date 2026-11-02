@@ -6,7 +6,7 @@ import { Field } from '@/components/tobezly/fields';
 import { supabase } from '@/integrations/supabase/client';
 import { metadata } from '@/lib/tobezly';
 export const Route = createFileRoute('/forgot-password')({
-  head: () => metadata('استعادة الحساب', 'أرسل رابطًا آمنًا لاستعادة كلمة مرور حساب طوبزلي.'),
+  head: () => metadata('استعادة الحساب', 'أرسل رابطًا آمنًا لاستعادة كلمة مرور حساب تواصل.'),
   component: Forgot
 });
 function Forgot() {

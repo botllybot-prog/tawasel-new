@@ -143,7 +143,7 @@ function Host() {
       });
     }
   }
-  return <main className="section-wrap browse-page"><div className="page-heading with-action"><div><span className="section-kicker"><Building2 size={15} />{t("\u0637\u0648\u0628\u0632\u0644\u064A \u0644\u0644\u0645\u0636\u064A\u0641\u064A\u0646")}</span><h1>{t("\u0645\u0633\u0627\u062D\u0627\u062A\u0643\u060C \u062A\u062D\u062A \u0625\u062F\u0627\u0631\u062A\u0643.")}</h1><p>{t("\u062D\u062F\u062F \u0627\u0644\u0633\u0639\u0631\u060C \u0627\u0641\u062A\u062D \u0627\u0644\u0623\u0648\u0642\u0627\u062A\u060C \u0648\u0627\u0633\u062A\u0642\u0628\u0644 \u0637\u0644\u0628\u0627\u062A \u0627\u0644\u062D\u062C\u0632.")}</p></div>{user && <Button onClick={() => {
+  return <main className="section-wrap browse-page"><div className="page-heading with-action"><div><span className="section-kicker"><Building2 size={15} />{t("\u062A\u0648\u0627\u0635\u0644 \u0644\u0644\u0645\u0636\u064A\u0641\u064A\u0646")}</span><h1>{t("\u0645\u0633\u0627\u062D\u0627\u062A\u0643\u060C \u062A\u062D\u062A \u0625\u062F\u0627\u0631\u062A\u0643.")}</h1><p>{t("\u062D\u062F\u062F \u0627\u0644\u0633\u0639\u0631\u060C \u0627\u0641\u062A\u062D \u0627\u0644\u0623\u0648\u0642\u0627\u062A\u060C \u0648\u0627\u0633\u062A\u0642\u0628\u0644 \u0637\u0644\u0628\u0627\u062A \u0627\u0644\u062D\u062C\u0632.")}</p></div>{user && <Button onClick={() => {
         setEdit(null);
         setFiles([]);
         setOpen(true);
