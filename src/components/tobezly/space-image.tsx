@@ -21,7 +21,7 @@ export function SpaceImage({ path }: { path?: string | undefined }) {
         return data?.signedUrl ?? null;
       }
       const signedPath = await getPublicPhoto({ data: { path } });
-      return signedPath ? new URL(signedPath, import.meta.env.VITE_SUPABASE_URL).href : null;
+      return signedPath ? new URL(signedPath, import.meta.env['VITE_SUPABASE_URL']).href : null;
     },
   });
   return <div className="space-image">{url ? <img src={url} alt="صورة المكان" loading="lazy" /> : <Building2 size={45} strokeWidth={1} />}</div>;
