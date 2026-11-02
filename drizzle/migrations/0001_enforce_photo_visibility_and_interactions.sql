@@ -1,0 +1,5 @@
+CREATE FUNCTION public.can_view_photo(_user_id uuid) RETURNS boolean LANGUAGE sql STABLE SECURITY DEFINER SET search_path=public AS $$ SELECT _user_id=auth.uid() OR public.is_moderator() OR (public.can_connect(_user_id) AND EXISTS(SELECT 1 FROM public.profiles p WHERE p.id=_user_id AND p.discoverable AND (p.photo_visibility='public' OR (p.photo_visibility='mutual' AND public.is_mutual(p.id))))) $$;
+REVOKE ALL ON FUNCTION public.can_view_photo(uuid) FROM PUBLIC; GRANT EXECUTE ON FUNCTION public.can_view_photo(uuid) TO authenticated;
+ALTER POLICY photos_read ON public.profile_photos USING(user_id=auth.uid() OR public.is_moderator() OR (status='approved' AND public.can_view_photo(user_id)));
+CREATE FUNCTION public.validate_like() RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path=public AS $$ BEGIN IF NOT public.can_connect(NEW.target_id) OR NOT EXISTS(SELECT 1 FROM public.profiles WHERE id=NEW.target_id AND discoverable AND birth_date IS NOT NULL) THEN RAISE EXCEPTION 'لا يمكن التواصل مع هذا الحساب'; END IF; RETURN NEW; END $$;
+CREATE TRIGGER validate_like BEFORE INSERT ON public.likes FOR EACH ROW EXECUTE FUNCTION public.validate_like();

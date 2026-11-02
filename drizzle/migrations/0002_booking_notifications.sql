@@ -1,0 +1,8 @@
+CREATE TABLE public.notifications(id uuid PRIMARY KEY DEFAULT gen_random_uuid(),user_id uuid NOT NULL REFERENCES public.profiles(id) ON DELETE CASCADE,booking_id uuid NOT NULL REFERENCES public.bookings(id),event text NOT NULL CHECK(event IN ('requested','received','accepted','rejected','cancelled')),is_read boolean NOT NULL DEFAULT false,created_at timestamptz NOT NULL DEFAULT now());
+GRANT SELECT ON public.notifications TO authenticated; GRANT UPDATE(is_read) ON public.notifications TO authenticated; GRANT ALL ON public.notifications TO service_role;
+ALTER TABLE public.notifications ENABLE ROW LEVEL SECURITY;
+CREATE POLICY notifications_own_read ON public.notifications FOR SELECT TO authenticated USING(user_id=auth.uid());
+CREATE POLICY notifications_mark_read ON public.notifications FOR UPDATE TO authenticated USING(user_id=auth.uid()) WITH CHECK(user_id=auth.uid());
+CREATE FUNCTION public.notify_booking() RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path=public AS $$ DECLARE owner uuid; BEGIN SELECT owner_id INTO owner FROM public.spaces WHERE id=NEW.space_id; IF TG_OP='INSERT' THEN INSERT INTO public.notifications(user_id,booking_id,event) VALUES(NEW.guest_id,NEW.id,'requested'),(owner,NEW.id,'received'); ELSIF NEW.status IS DISTINCT FROM OLD.status THEN INSERT INTO public.notifications(user_id,booking_id,event) VALUES(NEW.guest_id,NEW.id,NEW.status),(owner,NEW.id,NEW.status); END IF; RETURN NEW; END $$;
+CREATE TRIGGER booking_notification AFTER INSERT OR UPDATE OF status ON public.bookings FOR EACH ROW EXECUTE FUNCTION public.notify_booking();
+ALTER PUBLICATION supabase_realtime ADD TABLE public.notifications;
