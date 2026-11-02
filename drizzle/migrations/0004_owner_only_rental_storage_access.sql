@@ -1,0 +1,3 @@
+DROP POLICY IF EXISTS space_storage_read ON storage.objects;
+CREATE POLICY space_storage_read ON storage.objects FOR SELECT TO authenticated USING (bucket_id = 'space-photos' AND auth.uid() IS NOT NULL AND owner_id = auth.uid()::text AND (storage.foldername(name))[1] = auth.uid()::text);
+COMMENT ON POLICY space_storage_read ON storage.objects IS 'Direct reads are owner-only; published listing images are authorized by the application before short-lived signing.';

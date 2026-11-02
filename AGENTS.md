@@ -16,3 +16,4 @@
 - Use a single shared session provider and generated Cloud clients; public pages may show sign-in prompts, while RLS protects all private actions.
 - Keep translations in a shared dictionary with an explicit language provider; Arabic and Sorani use RTL, English uses LTR.
 - Booking notifications are created by database triggers and read through owner-scoped RLS; realtime refreshes the notification list.
+- Direct rental storage reads are owner-only; a server function authorizes exact published-listing photo paths through public RLS before issuing short-lived links, so private uploads cannot be enumerated by other users.
