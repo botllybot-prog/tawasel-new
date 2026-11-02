@@ -5,3 +5,4 @@
 - [ ] Verify core flows and publish if authorized.
 - [ ] Add many modest adult couple photos, Arabic/English/Kurdish language selection with RTL, and secure admin link.
 - [ ] Replace the main background with a group of adult men and women together.
+- [ ] Add durable booking notifications for request submission and status changes.
