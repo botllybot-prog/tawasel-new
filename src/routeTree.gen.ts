@@ -10,13 +10,25 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AccountRouteImport } from './routes/account'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BookingsRouteImport } from './routes/bookings'
+import { Route as DatingRouteImport } from './routes/dating'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as HostRouteImport } from './routes/host'
+import { Route as ModerationRouteImport } from './routes/moderation'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as SpacesRouteImport } from './routes/spaces'
+import { Route as SpacesIdRouteImport } from './routes/spaces.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -24,9 +36,29 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BookingsRoute = BookingsRouteImport.update({
+  id: '/bookings',
+  path: '/bookings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DatingRoute = DatingRouteImport.update({
+  id: '/dating',
+  path: '/dating',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
   id: '/forgot-password',
   path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HostRoute = HostRouteImport.update({
+  id: '/host',
+  path: '/host',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModerationRoute = ModerationRouteImport.update({
+  id: '/moderation',
+  path: '/moderation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
@@ -34,39 +66,110 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SpacesRoute = SpacesRouteImport.update({
+  id: '/spaces',
+  path: '/spaces',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpacesIdRoute = SpacesIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => SpacesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
+  '/bookings': typeof BookingsRoute
+  '/dating': typeof DatingRoute
   '/forgot-password': typeof ForgotPasswordRoute
+  '/host': typeof HostRoute
+  '/moderation': typeof ModerationRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/spaces': typeof SpacesRouteWithChildren
+  '/spaces/$id': typeof SpacesIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
+  '/bookings': typeof BookingsRoute
+  '/dating': typeof DatingRoute
   '/forgot-password': typeof ForgotPasswordRoute
+  '/host': typeof HostRoute
+  '/moderation': typeof ModerationRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/spaces': typeof SpacesRouteWithChildren
+  '/spaces/$id': typeof SpacesIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
+  '/bookings': typeof BookingsRoute
+  '/dating': typeof DatingRoute
   '/forgot-password': typeof ForgotPasswordRoute
+  '/host': typeof HostRoute
+  '/moderation': typeof ModerationRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/spaces': typeof SpacesRouteWithChildren
+  '/spaces/$id': typeof SpacesIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/forgot-password' | '/reset-password'
+  fullPaths:
+    | '/'
+    | '/account'
+    | '/auth'
+    | '/bookings'
+    | '/dating'
+    | '/forgot-password'
+    | '/host'
+    | '/moderation'
+    | '/reset-password'
+    | '/spaces'
+    | '/spaces/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/forgot-password' | '/reset-password'
-  id: '__root__' | '/' | '/auth' | '/forgot-password' | '/reset-password'
+  to:
+    | '/'
+    | '/account'
+    | '/auth'
+    | '/bookings'
+    | '/dating'
+    | '/forgot-password'
+    | '/host'
+    | '/moderation'
+    | '/reset-password'
+    | '/spaces'
+    | '/spaces/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/account'
+    | '/auth'
+    | '/bookings'
+    | '/dating'
+    | '/forgot-password'
+    | '/host'
+    | '/moderation'
+    | '/reset-password'
+    | '/spaces'
+    | '/spaces/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccountRoute: typeof AccountRoute
   AuthRoute: typeof AuthRoute
+  BookingsRoute: typeof BookingsRoute
+  DatingRoute: typeof DatingRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
+  HostRoute: typeof HostRoute
+  ModerationRoute: typeof ModerationRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  SpacesRoute: typeof SpacesRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -78,11 +181,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth': {
       id: '/auth'
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bookings': {
+      id: '/bookings'
+      path: '/bookings'
+      fullPath: '/bookings'
+      preLoaderRoute: typeof BookingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dating': {
+      id: '/dating'
+      path: '/dating'
+      fullPath: '/dating'
+      preLoaderRoute: typeof DatingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/forgot-password': {
@@ -92,6 +216,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/host': {
+      id: '/host'
+      path: '/host'
+      fullPath: '/host'
+      preLoaderRoute: typeof HostRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/moderation': {
+      id: '/moderation'
+      path: '/moderation'
+      fullPath: '/moderation'
+      preLoaderRoute: typeof ModerationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reset-password': {
       id: '/reset-password'
       path: '/reset-password'
@@ -99,14 +237,45 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/spaces': {
+      id: '/spaces'
+      path: '/spaces'
+      fullPath: '/spaces'
+      preLoaderRoute: typeof SpacesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/spaces/$id': {
+      id: '/spaces/$id'
+      path: '/$id'
+      fullPath: '/spaces/$id'
+      preLoaderRoute: typeof SpacesIdRouteImport
+      parentRoute: typeof SpacesRoute
+    }
   }
 }
 
+interface SpacesRouteChildren {
+  SpacesIdRoute: typeof SpacesIdRoute
+}
+
+const SpacesRouteChildren: SpacesRouteChildren = {
+  SpacesIdRoute: SpacesIdRoute,
+}
+
+const SpacesRouteWithChildren =
+  SpacesRoute._addFileChildren(SpacesRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccountRoute: AccountRoute,
   AuthRoute: AuthRoute,
+  BookingsRoute: BookingsRoute,
+  DatingRoute: DatingRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
+  HostRoute: HostRoute,
+  ModerationRoute: ModerationRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  SpacesRoute: SpacesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
