@@ -3,7 +3,7 @@ import { TextField } from './fields';
 import { useLanguage } from './language';
 import { changeCountry, citiesForCountry, inferCountry, rentalCountries } from '@/lib/rental-locations';
 
-export function LocationFields({ initialCity = '', initialCountry }: { initialCity?: string; initialCountry?: string | null }) {
+export function LocationFields({ initialCity = '', initialCountry }: { initialCity?: string | undefined; initialCountry?: string | null | undefined }) {
   const { t, language } = useLanguage();
   const [location, setLocation] = useState(() => ({ country: initialCountry ?? inferCountry(initialCity), city: initialCity }));
   const locale = language === 'ku' ? 'ar' : language;
