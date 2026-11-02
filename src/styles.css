@@ -247,3 +247,9 @@ html[dir=ltr] .hero-image { transform:scaleX(-1); }html[dir=ltr] .hero-shade { t
 .message-notification-item strong { display:block; font-size:13px; }
 .message-notification-item small { display:block; margin-top:4px; color:var(--muted-foreground); font-size:10px; }
 .message-notification-item p { margin-top:7px; overflow-wrap:anywhere; color:var(--muted-foreground); }
+
+.password-input-wrap { position:relative; display:block; }
+.password-input-wrap input { width:100%; padding-inline-end:44px; }
+.password-visibility { position:absolute; inset-inline-end:8px; top:50%; transform:translateY(-50%); display:grid; place-items:center; width:32px; height:32px; padding:0; border:0; border-radius:4px; background:transparent; color:var(--muted-foreground); cursor:pointer; }
+.password-visibility:hover { color:var(--foreground); background:var(--muted); }
+.password-visibility:focus-visible { outline:2px solid var(--ring); outline-offset:2px; }
