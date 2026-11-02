@@ -8,6 +8,13 @@
       "when": 1793597884158,
       "tag": "0000_tobezly_independent_platforms",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793598381928,
+      "tag": "0001_enforce_photo_visibility_and_interactions",
+      "breakpoints": true
     }
   ]
 }

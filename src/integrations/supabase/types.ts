@@ -377,6 +377,7 @@ export type Database = {
     }
     Functions: {
       can_connect: { Args: { other_id: string }; Returns: boolean }
+      can_view_photo: { Args: { _user_id: string }; Returns: boolean }
       discover_people: {
         Args: never
         Returns: {
