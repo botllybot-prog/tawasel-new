@@ -1,24 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
+import { createFileRoute,Link } from '@tanstack/react-router';
+import { ArrowUpLeft,Heart,ShieldCheck,LockKeyhole,UserRound,Compass,Leaf,BookOpen,Music,Camera,Mountain,Building2,Check } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import cafe from '@/assets/tobezly-cafe.jpg';
+import studio from '@/assets/meeting-studio.jpg';
+import { metadata } from '@/lib/tobezly';
+export const Route=createFileRoute('/')({head:()=>metadata('التعارف بطريقتك','طوبزلي للتعارف بين البالغين باهتمامات مشتركة وخصوصية، ومنصة مستقلة لتأجير المساحات.'),component:Home});
+function Home(){return <><section className="home-hero"><img src={cafe} alt="حديث ودي في مقهى مفتوح" width={1920} height={1024} className="hero-image"/><div className="hero-shade"/><div className="hero-inner"><div className="hero-copy"><span className="eyebrow"><span/>بدايات حقيقية، على طريقتك</span><h1>طوبزلي.<br/>لمن يشبهك.</h1><p>التقِ بمن يشاركك اهتماماتك،<br/>واترك للحكاية فرصة أن تبدأ.</p><Button asChild size="lg" className="hero-cta"><Link to="/dating">اكتشف أشخاصًا يشبهونك<ArrowUpLeft/></Link></Button><div className="hero-note"><ShieldCheck size={17}/>أسماء مستعارة. خصوصية أكثر. تواصل أصدق.</div></div><span className="image-caption">كل حكاية جميلة، تبدأ بحديث.</span></div></section><section className="trust-strip"><div><ShieldCheck/>حسابات موثّقة</div><div><LockKeyhole/>خصوصيتك بيدك</div><div><UserRound/>للأعمار 18 سنة وأكثر</div><div><Heart/>تواصل بإعجاب متبادل</div></section><section className="section-wrap discovery-section"><div className="section-heading"><div><span className="section-kicker">أكثر من مجرد تعارف</span><h2>الاهتمامات المشتركة، بداية أقرب.</h2></div><Button asChild variant="link"><Link to="/dating">اكتشف مجتمع طوبزلي<ArrowUpLeft/></Link></Button></div><div className="interest-grid">{[{icon:BookOpen,name:'بين صفحات الكتب',sub:'لمن يجد نفسه في حكاية',topic:'القراءة'},{icon:Mountain,name:'في رحلة جديدة',sub:'لمن يحب اكتشاف العالم',topic:'السفر'},{icon:Music,name:'على نفس الإيقاع',sub:'لمن تجمعهم الموسيقى',topic:'الموسيقى'},{icon:Camera,name:'بعين مختلفة',sub:'لمن يرى الجمال في التفاصيل',topic:'الفن'}].map(({icon:Icon,name,sub,topic})=><Link key={name} to="/dating" search={{interest:topic}} className="interest-tile"><span className="interest-icon"><Icon size={26}/></span><h3>{name}</h3><p>{sub}</p><ArrowUpLeft className="tile-arrow" size={18}/></Link>)}</div></section><section className="rental-band"><div className="section-wrap rental-inner"><div><span className="section-kicker"><Building2 size={15}/>عالم آخر من طوبزلي</span><h2>مساحة تناسب يومك.</h2><p>مكاتب، استوديوهات ومساحات مرنة، بالساعة أو باليوم.<br/>منصة مستقلة تمامًا عن التعارف.</p><Button asChild variant="outline"><Link to="/spaces">استكشف المساحات<ArrowUpLeft/></Link></Button></div><img src={studio} width={1024} height={768} alt="مساحة اجتماعات مضيئة" loading="lazy"/><div className="rental-points"><span><Check/>الأسعار يحددها صاحب المكان</span><span><Check/>أوقات واضحة وحجز مرن</span><span><Check/>طلبات حجز مستقلة</span></div></div></section><section className="section-wrap safety-note"><Leaf size={24}/><div><h3>بدايات آمنة، وتواصل باحترام.</h3><p>صور تُراجع قبل النشر، وإبلاغ وحظر عند الحاجة. أنت تختار ما تشاركه.</p></div><Button asChild variant="ghost"><Link to="/account">إعدادات الخصوصية<ArrowUpLeft/></Link></Button></section></>;}
