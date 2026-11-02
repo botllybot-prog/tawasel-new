@@ -1,7 +1,7 @@
 import { useLanguage } from '@/components/tobezly/language';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { Heart, ShieldCheck, Flag, Ban, MessageCircle, UserRound, SlidersHorizontal, Search, ArrowUpLeft, LockKeyhole } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
@@ -12,7 +12,8 @@ import { interests, metadata } from '@/lib/tobezly';
 import { toast } from 'sonner';
 export const Route = createFileRoute('/dating')({
   validateSearch: (s: Record<string, unknown>) => ({
-    interest: typeof s['interest'] === 'string' ? s['interest'] : ''
+    interest: typeof s['interest'] === 'string' ? s['interest'] : '',
+    chat: typeof s['chat'] === 'string' ? s['chat'] : ''
   }),
   head: () => metadata('اكتشف من يشبهك', 'تعارف آمن للبالغين عبر الاهتمامات المشتركة، مع الإعجاب المتبادل والإبلاغ والحظر.'),
   component: Dating
@@ -36,7 +37,8 @@ function Dating() {
     ready
   } = useSession();
   const qc = useQueryClient();
-  const initial = Route.useSearch().interest;
+  const routeSearch = Route.useSearch();
+  const initial = routeSearch.interest;
   const [topic, setTopic] = useState(initial);
   const [search, setSearch] = useState('');
   const [selected, setSelected] = useState<Person | null>(null);
@@ -57,6 +59,16 @@ function Dating() {
       return data as Person[];
     }
   });
+  const navigate = Route.useNavigate();
+  useEffect(() => {
+    const targetId = routeSearch.chat;
+    if (!targetId || !people.length) return;
+    const target = people.find(person => person.id === targetId && person.mutual);
+    if (!target) return;
+    setSelected(target);
+    setAction('chat');
+    void navigate({ search: previous => ({ ...previous, chat: '' }), replace: true });
+  }, [routeSearch.chat, people, navigate]);
   const {
     data: own
   } = useQuery({
