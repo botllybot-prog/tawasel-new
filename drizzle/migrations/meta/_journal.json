@@ -15,6 +15,13 @@
       "when": 1793598381928,
       "tag": "0001_enforce_photo_visibility_and_interactions",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793598465598,
+      "tag": "0002_booking_notifications",
+      "breakpoints": true
     }
   ]
 }

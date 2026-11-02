@@ -193,6 +193,48 @@ export type Database = {
           },
         ]
       }
+      notifications: {
+        Row: {
+          booking_id: string
+          created_at: string
+          event: string
+          id: string
+          is_read: boolean
+          user_id: string
+        }
+        Insert: {
+          booking_id: string
+          created_at?: string
+          event: string
+          id?: string
+          is_read?: boolean
+          user_id: string
+        }
+        Update: {
+          booking_id?: string
+          created_at?: string
+          event?: string
+          id?: string
+          is_read?: boolean
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notifications_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profile_photos: {
         Row: {
           created_at: string
